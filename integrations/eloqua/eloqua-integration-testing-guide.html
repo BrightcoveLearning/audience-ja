@@ -1,0 +1,636 @@
+﻿<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  
+  <title>Eloqua 統合テストガイド</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-ultra.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-ultra.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-super.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-super.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-black.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-black.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-bold.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-bold.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-medium.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-medium.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
+  <script src="/assets/js/sajari-head.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><span class="product-logo" style="font-family:'Balto Web','Public Sans';font-size:2em;font-weight:bold;">ブライトコーブオーディエンス<sup>™</sup></span></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);"><option value="">言語の選択</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
+
+<script>
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+    <select id="site_select" class="bcls-select" style="margin-right: 1rem;">
+      <option value="">ブライトコーブのその他のドキュメント</option>
+      
+        
+          <option value="https://support.brightcove.com">ドキュメントホーム</option>
+        
+      
+        
+          <option value="https://audience.support.brightcove.com">Brightcove Audience</option>
+        
+      
+        
+          <option value="https://beacon.support.brightcove.com">ブライトコーブビーコン</option>
+        
+      
+        
+          <option value="https://campaign.support.brightcove.com">ブライトコーブキャンペーン</option>
+        
+      
+        
+          <option value="https://engage.support.brightcove.com">Brightcove Engage</option>
+        
+      
+        
+          <option value="https://live.support.brightcove.com">Brightcove Live</option>
+        
+      
+        
+          <option value="https://gallery.support.brightcove.com">Brightcove Gallery</option>
+        
+      
+        
+          <option value="https://ssai.support.brightcove.com">Brightcove SSAI</option>
+        
+      
+        
+          <option value="https://social.support.brightcove.com">ブライトコーブソーシャル</option>
+        
+      
+        
+          <option value="https://studio.support.brightcove.com">Video Cloud Studio</option>
+        
+      
+        
+          <option value="https://player.support.brightcove.com">ブライトコーブのプレーヤー開発</option>
+        
+      
+        
+          <option value="https://apis.support.brightcove.com">Video CloudプラットフォームAPI</option>
+        
+      
+        
+          <option value="https://sdks.support.brightcove.com">ビデオクラウドデバイス SDK</option>
+        
+      
+        
+          <option value="https://integrations.support.brightcove.com">統合および CMS コネクタ</option>
+        
+      
+        
+          <option value="https://general.support.brightcove.com">ビデオクラウドの一般情報</option>
+        
+      
+        
+          <option value="https://zencoder.support.brightcove.com">Zencoder</option>
+        
+      
+    </select>
+
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="サポート"/> サポートへのお問い合わせ</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="システムステータス"/> システムステータス</a></span> <br/>
+    
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">ホーム</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/integrations/eloqua/">エロクア</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">Eloqua 統合テストガイド</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3 left-side-bar">
+        <nav class="sidenav">
+          
+            
+            <h5><a href="/index.html">ホーム</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/get-started/index.html">はじめに<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/get-started/getting-started-audience-module.html">オーディエンスのはじめに</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/audience-training-videos.html">オーディエンストレーニングビデオ</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/general/index.html">一般情報<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/general/audience-fields-and-data-definitions.html">対象者フィールドとデータ定義</a></li>
+                  
+                
+                  
+                    <li><a href="/general/configuring-audience-settings.html">オーディエンス設定の構成</a></li>
+                  
+                
+                  
+                    <li><a href="/general/creating-audience-enabled-player.html">オーディエンス対応プレーヤーの作成</a></li>
+                  
+                
+                  
+                    <li><a href="/general/creating-audience-lead-form.html">オーディエンスリードフォームの作成</a></li>
+                  
+                
+                  
+                    <li><a href="/general/how-audience-module-identifies-viewers.html">オーディエンスが視聴者を識別する方法</a></li>
+                  
+                
+                  
+                    <li><a href="/general/publishing-video-email-using-audience-module.html">電子メールへのビデオの公開</a></li>
+                  
+                
+                  
+                    <li><a href="/general/using-custom-metrics-and-events.html">カスタムメトリックスとイベントの使用</a></li>
+                  
+                
+                  
+                    <li><a href="/general/viewing-player-events-audience-module.html">プレイヤーイベントの表示</a></li>
+                  
+                
+                  
+                    <li><a href="/general/viewing-video-activity.html">ビデオアクティビティの表示</a></li>
+                  
+                
+                  
+                    <li><a href="/general/viewing-viewer-profile-information.html">ビューアープロファイル情報の表示</a></li>
+                  
+                
+                  
+                    <li><a href="/general/working-utm-fields-audience-module.html">UTM フィールドの操作</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/integrations/index.html">統合<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/integrations/eloqua/index.html">Eloqua <strong> + </strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/integrations/eloqua/creating-custom-lead-forms-oracle-eloqua.html">カスタムリードフォームの作成</a></li>
+                        
+                        <li><a href="/integrations/eloqua/eloqua-integration-testing-guide.html">Eloqua 統合テストガイド</a></li>
+                        
+                        <li><a href="/integrations/eloqua/embedding-video-cloud-video-eloqua-landing-page.html">ランディングページへのビデオの埋め込み</a></li>
+                        
+                        <li><a href="/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html">Oracle Eloquaとの統合</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/integrations/hubspot/index.html">HubSpot <strong> + </strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/integrations/hubspot/creating-custom-lead-forms-hubspot.html">カスタムリードフォームの作成</a></li>
+                        
+                        <li><a href="/integrations/hubspot/hubspot-rest-api-integration-testing-guide.html">HubSpot REST API テストガイド</a></li>
+                        
+                        <li><a href="/integrations/hubspot/integrating-video-cloud-hubspot-using-client-side-apis.html">HubSpot（クライアントサイド API）との統合</a></li>
+                        
+                        <li><a href="/integrations/hubspot/integrating-video-cloud-hubspot-using-rest-apis.html">ハブスポット (REST API) との統合</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/integrations/marketo/index.html">マルケト<strong> + </strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/integrations/marketo/creating-custom-lead-forms-marketo.html">カスタムリードフォームの作成</a></li>
+                        
+                        <li><a href="/integrations/marketo/integrating-video-cloud-marketo-using-munchkin.html">マルケトとの統合 (Munchkin) </a></li>
+                        
+                        <li><a href="/integrations/marketo/integrating-video-cloud-marketo-using-rest-apis.html">マルケトとの統合（REST API）</a></li>
+                        
+                        <li><a href="/integrations/marketo/marketo-rest-integration-testing-guide.html">Marketto REST 統合テストガイド</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/integrations/non-map/index.html">マップ以外<strong> + </strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/integrations/non-map/creating-custom-integrations-audience-module.html">カスタム統合の作成</a></li>
+                        
+                        <li><a href="/integrations/non-map/integrating-audience-single-sign.html">シングルサインオンとの統合</a></li>
+                        
+                        <li><a href="/integrations/non-map/using-audience-module-track-viewers.html">オーディエンスを使って視聴者を追跡する</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/integrations/salesforce/index.html">Salesforce <strong> + </strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/integrations/salesforce/creating-custom-lead-forms-salesforce.html">カスタムリードフォームの作成</a></li>
+                        
+                        <li><a href="/integrations/salesforce/creating-custom-lead-forms-salesforce.html">Pardot の Salesforce オブジェクトの作成</a></li>
+                        
+                        <li><a href="/integrations/salesforce/integrating-video-cloud-salesforce.html">Salesforce との統合</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/admin/index.html">オーディエンスの管理<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/admin/exporting-audience-data-audience-module.html">オーディエンスからのデータのエクスポート</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/exporting-gallery-lead-data.html">ギャラリーリードデータのエクスポート</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/managing-viewer-data.html">ビューアデータの管理</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/troubleshooting-audience-issues.html">オーディエンスの問題のトラブルシューティング</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/develop/index.html">開発者<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/develop/overview-audience-api.html">概要:オーディエンス API </a></li>
+                  
+                
+                  
+                    <li><a href="/develop/reference.html">オーディエンス API リファレンス</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/index.html"><strong>サポート+ </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/support/brightcove-answer.html">ブライトコーブの回答</a></li>
+                  
+                
+                  
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">ブライトコーブのシステムステータスページの表示</a></li>
+                  
+                
+                  
+                    <li><a href="/support/contact-sales.html">営業へのお問い合わせ</a></li>
+                  
+                
+                  
+                    <li><a href="/support/opening-case-with-brightcove-support.html">サポートケースを開く</a></li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="ナビゲーションメニュー"/></p>
+
+<!-- search bar -->
+<div id="nav-search-box" style="margin-top: 1rem;"></div>
+<!-- in-page navigation for narrow screens -->
+<details class="centered-inpage-nav" id="centered_inpage_nav">
+  <summary><h6 class="toc">ページコンテンツ</h6></summary>
+  <nav id="centered_toc"></nav>
+  <ul id="centered_in_page_toc" class="list-none"></ul>
+</details>
+<!-- open in new tab/window -->
+<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="新しいタブで開く" style="margin-top:4em;width: 1.5em;"/></a>
+
+
+
+  
+    
+
+
+<article class="bcls-article">
+  <h1>Eloqua 統合テストガイド</h1>
+  <summary>このトピックでは、VideoCloudとEloquaの統合を検証する方法を学習します。</summary>
+  <section class="bcls-section">
+    <p>新しいEloqua統合をセットアップする場合、ビデオ視聴データが実際にEloquaに配信されていることをテストおよび確認するのは難しい場合があります。このトピックでは、統合が機能し、表示データとリードがEloquaに送信されていることを体系的にテストして確認する方法を学習します。</p>
+    <aside class="bcls-aside bcls-aside--information">注：Eloquaで使用するためにAudienceモジュールを構成する方法については、を参照してください。&nbsp;<a href="/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html"> VideoCloudとOracleEloquaの統合</a>。</aside>
+  </section>
+  <section class="bcls-section">
+    <h2 id="start">始める前に</h2>
+    <p>統合を検証する前に、次のことが前提になります。</p>
+    <ul>
+      <li>正常に完了しました<a href="/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html">BrightcoveAudienceとEloquaの統合</a></li>
+      <li>少なくとも1つ作成しました<a href="/general/creating-audience-enabled-player.html">オーディエンス対応プレーヤー</a> Eloqua接続を使用するように構成しました</li>
+    </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="lead_form">テストリードフォームの設定とビデオの公開</h2>
+    <p>テストのために、オーディエンスのカスタムリードフォームを作成して構成する必要があります。これは、オーディエンスに貼り付けた埋め込みコードのEloquaフォームです。実稼働環境でリードフォームを使用しない場合でも、このリードフォームを使用して、データベースおよびページで既知であることが確認されます。Eloquaフォームを作成し、それを使用するようにAudienceを構成するには、次の手順に従います。</p>
+    <ol class="bcls-tasklist-restart">
+      <li>Eloqua アカウントにログインします。</li>
+      <li>Eloquaフォームを作成してスタイルを設定します。Eloquaフォームの作成については、を参照してください。<a href="/integrations/eloqua/creating-custom-lead-forms-oracle-eloqua.html"> OracleEloquaのカスタムリードフォームの作成</a>。</li>
+      <li>クリック<strong>アクション&gt;フォームHTMLの表示</strong>ページの上部にあります。</li>
+      <li>フォームの埋め込みコードをクリップボードにコピーします。</li>
+      <li>Audienceモジュールに戻ります。</li>
+      <li>Eloquaフォーム埋め込みコードを使用して新しいリードフォームを作成します。</li>
+      <li>5 秒のマークにフォームが表示されるようにカスタムフォームを設定します。このようにして、いつ表示されるべきかを正確に知ることができます。</li>
+      <li><strong>リードが既にわかっている場合でも、リードフォームを常に表示する</strong> ] チェックボックスをオンにします。これにより、テスト中に記入した後もフォームが表示され続けます。</li>
+      <li><strong>フォームを保存します</strong>。</li>
+      <li>作成したばかりのEloquaリードフォームを使用するように、Eloqua接続を使用してBrightcovePlayerを構成します。</li>
+    </ol>
+  </section>
+  <section class="bcls-section">
+    <h2 id="preview_video">ビデオを見るためのプレビューリンクの生成</h2>
+    <p>ビデオへのプレビューリンクを生成するには、次の手順に従います。</p>
+    <ol class="bcls-tasklist-restart">
+      <li>Media モジュールを開きます。</li>
+      <li>ビデオを選択し、Web プレーヤーに公開します。リードフォームで、オーディエンス対応プレーヤーを選択してください。</li>
+      <li>プレビューリンクをクリックして、ビデオを新しいブラウザウィンドウで開きます。この方法でテストすると、HTML ページに埋め込まれたプレーヤーによって導入される可能性のある変数がなくなります。</li>
+      <li>ビデオが再生され、リードフォームが 5 秒マークに表示されることを確認します。</li>
+      <li>後でEloquaで簡単に見つけられるように、一意の連絡先情報と電子メールアドレス（つまり、有名人の名前または「bctest」という単語を含む名前）を使用してリードフォームに記入します。これにより、ブラウザ、プレーヤー、データベースレベルの変数がなくなります。新しいユーザーとしてフォームに記入することで、あなたがEloquaの既知のユーザーであることを確認できます。</li>
+    </ol>
+  </section>
+  <section class="bcls-section">
+    <h2 id="confirm_data">オーディエンスがデータを正常にキャプチャしていることの確認</h2>
+    <p>Eloquaでビデオ視聴データを探す前に、まずオーディエンスが実際にビデオビューをキャプチャしたことを確認します。オーディエンス UI でデータを表示するには最大 3 時間かかる場合があります。オーディエンスがデータを正常にキャプチャしていることを確認するには、次の手順に従います。</p>
+    <ol class="bcls-tasklist-restart">
+      <li>Audienceモジュールを開きます。</li>
+      <li>左側のナビゲーションで [ <strong>最近使用したすべてのアクティビティ</strong> ] をクリックします。</li>
+      <li>視聴したばかりの動画の名前を示す最近のタイムスタンプが付いたイベントがあることを確認します。<strong>イベントステータスは未処理である必要があります</strong>。これは、オーディエンスがビューをキャプチャしたが、まだEloquaとの同期を試みていないことを示しています。
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/integrations/eloqua/node18742-unprocessed.png"/></figure>
+      </li>
+      <li>オーディエンスとEloqua間の同期を手動でトリガーするには、<strong>同期アクティビティ</strong>左側のナビゲーションで。</li>
+      <li>から<strong>接続を選択します</strong>ドロップダウンリストで、Eloqua統合を選択します。[ <strong>同期テスト</strong> ] ボタンが表示されます。</li>
+      <li>[ <strong>同期のテスト</strong> ] をクリックして、手動同期をトリガーします。手動同期をトリガーできる頻度は制限されます。デフォルトでは、オーディエンスは1時間に1回ビューをEloquaに同期します。
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/integrations/eloqua/node18742-test-sync.png"/></figure>
+      </li>
+      <li>左側のナビゲーションで [ <strong>最近使用したすべてのアクティビティ</strong> ] をクリックします。</li>
+      <li><strong>ビューイベントのステータスはキューに入れられます</strong>。データが実際にEloquaに同期されるまでに15分ほどかかる場合があります。データが同期されると、ステータスは次の 2 つのステータスのいずれかに変わります。
+        <ul>
+          <li><strong>synced </strong> -ユーザーが既知のユーザーであり、データがアクティビティログに正常に配信されたことを示します。データは、Eloquaでも数分以内に表示できるはずです。</li>
+          <li><strong>unknown_contact</strong> -ユーザーが不明と見なされ、Eloquaがデータを受け入れることができなかったことを示します。あなたが得る場合<strong>unknown_contact</strong>ステータスを確認するには、正しいプレーヤーを使用して動画を公開し、Eloquaフォームを配置し、ページに埋め込まれていないプレビューリンクを使用してテストしていることを確認してください。
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/integrations/eloqua/node18742-synced.png"/></figure>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+  <section class="bcls-section">
+    <h2 id="confirm_marketo">ビデオビューデータがEloquaにあることの確認</h2>
+    <p>オーディエンスが表示したら<strong>同期</strong>ステータスが表示されたら、次の手順に従って、データがEloquaにあることを確認します。</p>
+    <aside class="bcls-aside bcls-aside--information">注：Eloqua UIがオーディエンスから受信した新しいデータで更新されるまで5〜10分かかります。</aside>
+    <ol class="bcls-tasklist-restart">
+      <li>Eloqua アカウントにログインします。</li>
+      <li>に移動します<strong>カスタムオブジェクト</strong>。</li>
+      <li>を見つけます<strong>BrightcoveVideoView</strong>カスタムオブジェクト。</li>
+      <li>その横にあるドロップダウン矢印をクリックしてから、<strong>連絡先の内訳にマッピングされたカスタムオブジェクトレコード</strong>。このカスタムオブジェクトにビデオ視聴データがある連絡先のリストが表示されます。</li>
+      <li>リードフォームに記入するときに使用した一意の名前またはメールアドレスを見つけます。</li>
+      <li>連絡先をクリックして詳細ページを開きます。連絡先のすべてのビデオビューレコードのリストが表示されます。これは、オーディエンスからEloquaに配信されたビデオビューデータです。ビデオ名、ビデオID、プレーヤーID、視聴時間、視聴率などのフィールドが含まれています。
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/integrations/eloqua/node18742-eloqua-info.png"/></figure>
+      </li>
+    </ol>
+    <p>Eloquaでは、カスタムデータオブジェクトに配信されるデータを既知の連絡先に割り当てる必要があります。Eloquaは既知の連絡先のデータのみを受け入れます。不明な連絡先のデータは同期されません。リードフォームを使用しない場合、不明なユーザーが既知のユーザーに変換する方法がないため、データは同期されません。</p>
+  </section>
+</article>
+
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav" id="right_side_nav">
+        <h6 class="toc">ページコンテンツ</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="last-updated">
+  ページ最終更新日 2020 年 1 月 30 日
+</div>
+
+
+<footer class="bcls-footer" role="contentinfo">
+  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>ブライトコーブサポート</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">システムステータス</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">サポートへのお問い合わせ</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">ドキュメンテーション</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>トレーニング</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">オンラインコース</a>
+          </li>
+          <li>
+            <a href="https://studio.support.brightcove.com/training/register-training.html">コースに登録する</a>
+          </li>
+          <li>
+            <a href="https://university.brightcove.com/">Brightcove University</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">Brightcove.com</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">お問合せ</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> Brightcove Inc. All rights reserved.</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">プライバシー</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">利用規約</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+<div id="talla_wrapper">
+  <p style="text-align: right;position: relative;"><button style="background:rgb(2, 28, 146);color:Snow;padding:.3rem;position:fixed;right:0;bottom:1em;z-index:9999999" onclick="javascript:displayChat()">質問ですか? </button> </p>
+  <div id="talla_chat">
+</div>
+</div>
+<script>
+      
+  var searchBox = sajari.init({
+    mode: "search-box",
+    project: "1588255093746585379", // Set this to your project.
+    collection: "brightcove-documenation", // Set this to your collection.
+    instantPipeline: "autocomplete", // Pipeline used as you type
+    inputPlaceholder: "Search", // Input element placeholder
+    maxSuggestions: 5, // Maximum number of suggestions to show
+    attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
+  });
+  
+    searchBox("sub", "pipeline.search-sent", function (_, query) {
+      window.location = "/search.html?q=" + encodeURIComponent(query.q);
+    });
+  
+
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/setDate.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/js/sajari-search-foot.js"></script>
+  
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <script src="https://assets.talla.com/latest/embeddedjs/talla.js"></script>
+  <script src="/assets/js/talla-init.js"></script>
+  <style>
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
+
+</body>
+
+</html>
