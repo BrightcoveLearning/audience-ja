@@ -1,39 +1,49 @@
-﻿<!doctype html>
-<html lang="ja">
+<!doctype html>
+<html lang="en-us">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   
-  <title>Video CloudをOracle Eloquaと統合する</title>
+  <title>VideoCloudとOracleEloquaの統合</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">  
-  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
   <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/learning-paths/learning-paths.css">
   <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
   <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
   <link rel="stylesheet" href="/assets/css/local.css">
-  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2728311-17"></script>
+<script translate="no">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2728311-17');
+</script>
   <script src="/assets/js/sajari-head.js"></script>
+	<script src="https://unpkg.com/feather-icons"></script>
 </head>
 
 <body class="body">
-
-<header>
+ <header>
   <div class="div-header">
-    <a href="/"><span class="product-logo" style="font-family:'Balto Web','Public Sans';font-size:2em;font-weight:bold;">Brightcove オーディエンス<sup>™</sup></span></a>
+    <a href="/"><span class="product-logo" style="font-family:'Public Sans';font-size:32px;font-weight:normal;max-width:none;color:rgb(1, 5, 14)">BRIGHTCOVE AUDIENCE<sup>&trade;</sup></span></a>
 <!-- GTranslate: https://gtranslate.io/ -->
-<select onchange="doGTranslate(this);"><option value="">言語の選択</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
+<select onchange="doGTranslate(this);"><option value="">Select Language</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
 
-<script>
+<script translate="no">
 /* <![CDATA[ */
 function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
 /* ]]> */
@@ -41,321 +51,223 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 
 
-    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="サポート"/> サポートへのお問い合わせ</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="システムステータス"/> システムステータス</a></span> <br/>
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com"><i data-feather="help-circle"></i> Contact Support</a> <span style="vertical-align: middle;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><i data-feather="cloud"></i> System Status</a></span>
+    <br>
     
   </div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb arr-right">
       
-      <li class="breadcrumb-item"><a href="/">ホーム</a></li>
+      <li class="breadcrumb-item first-item"><a href="/">Home</a></li>
       
       
       
-      <li class="breadcrumb-item"><a href="/integrations/eloqua/">エロクア</a></li>
+      <li class="breadcrumb-item"><a href="/integrations/eloqua/">Eloqua</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Video CloudをOracle Eloquaと統合する</li>
+      <li class="breadcrumb-item active" aria-current="page">VideoCloudとOracleEloquaの統合</li>
     </ol>
   </nav>
-</header>
-<div class="container">
+</header> <div class="container">
     <div class="row">
-            <div class="col-sm-3 left-side-bar">
-        <select id="site_select" class="bcls-select" style="margin-right: 1rem;">
-          <option value="">Brightcove のその他のドキュメント</option>
-          
-            
-              <option value="https://support.brightcove.com">ドキュメントホーム</option>
-            
-          
-            
-              <option value="https://audience.support.brightcove.com">Brightcove Audience</option>
-            
-          
-            
-              <option value="https://beacon.support.brightcove.com">Brightcove ビーコン</option>
-            
-          
-            
-              <option value="https://campaign.support.brightcove.com">Brightcove キャンペーン</option>
-            
-          
-            
-              <option value="https://engage.support.brightcove.com">Brightcove Engage</option>
-            
-          
-            
-              <option value="https://live.support.brightcove.com">Brightcove ・ライブ</option>
-            
-          
-            
-              <option value="https://gallery.support.brightcove.com">Brightcove ギャラリー</option>
-            
-          
-            
-              <option value="https://ssai.support.brightcove.com">Brightcove SSAI</option>
-            
-          
-            
-              <option value="https://social.support.brightcove.com">Brightcove ソーシャル</option>
-            
-          
-            
-              <option value="https://studio.support.brightcove.com">Video Cloud Studio</option>
-            
-          
-            
-              <option value="https://player.support.brightcove.com">Brightcove のプレーヤー開発</option>
-            
-          
-            
-              <option value="https://apis.support.brightcove.com">Video CloudプラットフォームAPI</option>
-            
-          
-            
-              <option value="https://sdks.support.brightcove.com">ビデオクラウドデバイス SDK</option>
-            
-          
-            
-              <option value="https://integrations.support.brightcove.com">統合および CMS コネクタ</option>
-            
-          
-            
-              <option value="https://general.support.brightcove.com">ビデオクラウドの一般情報</option>
-            
-          
-            
-              <option value="https://zencoder.support.brightcove.com">Zencoder</option>
-            
-          
-        </select>
-
+      <div class="col-sm-3 left-side-bar">
+				<select id="site_select" class="bcls-select" style="margin-left: 1rem;">
+					<option value="">Brightcoveのその他のドキュメント</option>
+					 
+							<option value="https://support.brightcove.com">ドキュメンテーションホーム</option>
+						  
+							<option value="">-ビデオクラウド-</option>
+						  
+							<option value="https://studio.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp; Video Cloud Studio</option>
+						  
+							<option value="https://player.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp; Brightcoveプレーヤーの開発</option>
+						  
+							<option value="https://apis.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ビデオクラウドプラットフォームAPI</option>
+						  
+							<option value="https://sdks.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ビデオクラウドデバイスSDK</option>
+						  
+							<option value="https://integrations.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;統合とCMSコネクタ</option>
+						  
+							<option value="https://general.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ビデオクラウドの一般情報</option>
+						  
+							<option value="">-ビデオエッセンシャル-</option>
+						  
+							<option value="https://beacon.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブビーコン</option>
+						  
+							<option value="https://live.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブライブ</option>
+						  
+							<option value="https://zencoder.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp; Zencoder</option>
+						  
+							<option value="">-ビデオクラウドアドオン-</option>
+						  
+							<option value="https://studio.support.brightcove.com/audience/index.html">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブの聴衆</option>
+						  
+							<option value="https://campaign.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブキャンペーン</option>
+						  
+							<option value="https://engage.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブエンゲージ</option>
+						  
+							<option value="https://gallery.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブギャラリー</option>
+						  
+							<option value="https://studio.support.brightcove.com/social/index.html">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブソーシャル</option>
+						  
+							<option value="https://ssai.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;ブライトコーブSSAI</option>
+						 
+				</select>
         <nav class="sidenav">
-          
-            
+           
             <h5><a href="/index.html">ホーム</a></h5>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/get-started/index.html">はじめに<strong> + </strong></a></h5>
+              
+              <h5 class="submenu-header"><a href="/get-started/index.html">入門編<strong>+</strong></a></h5>
               <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/get-started/getting-started-audience-module.html">オーディエンスのはじめに</a></li>
-                  
-                
-                  
+                 
+                    <li><a href="/get-started/getting-started-audience-module.html">オーディエンス入門</a></li>
+                    
                     <li><a href="/get-started/audience-training-videos.html">オーディエンストレーニングビデオ</a></li>
-                  
-                
+                   
               </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/general/index.html">一般情報<strong> + </strong></a></h5>
+              
+              <h5 class="submenu-header"><a href="/general/index.html">一般情報<strong>+</strong></a></h5>
               <ul class="sidenav-submenu" style="display:none;">
-                
-                  
+                 
                     <li><a href="/general/audience-fields-and-data-definitions.html">対象者フィールドとデータ定義</a></li>
-                  
-                
-                  
+                    
                     <li><a href="/general/configuring-audience-settings.html">オーディエンス設定の構成</a></li>
-                  
-                
-                  
+                    
                     <li><a href="/general/creating-audience-enabled-player.html">オーディエンス対応プレーヤーの作成</a></li>
-                  
-                
-                  
+                    
                     <li><a href="/general/creating-audience-lead-form.html">オーディエンスリードフォームの作成</a></li>
-                  
-                
-                  
-                    <li><a href="/general/how-audience-module-identifies-viewers.html">オーディエンスが視聴者を識別する方法</a></li>
-                  
-                
-                  
+                    
+                    <li><a href="/general/how-audience-module-identifies-viewers.html">視聴者が視聴者を特定する方法</a></li>
+                    
                     <li><a href="/general/publishing-video-email-using-audience-module.html">電子メールへのビデオの公開</a></li>
-                  
-                
-                  
+                    
                     <li><a href="/general/using-custom-metrics-and-events.html">カスタムメトリックスとイベントの使用</a></li>
-                  
-                
-                  
-                    <li><a href="/general/viewing-player-events-audience-module.html">プレイヤーイベントの表示</a></li>
-                  
-                
-                  
+                    
+                    <li><a href="/general/viewing-player-events-audience-module.html">プレーヤーイベントの表示</a></li>
+                    
                     <li><a href="/general/viewing-video-activity.html">ビデオアクティビティの表示</a></li>
-                  
-                
-                  
+                    
                     <li><a href="/general/viewing-viewer-profile-information.html">ビューアープロファイル情報の表示</a></li>
-                  
-                
-                  
-                    <li><a href="/general/working-utm-fields-audience-module.html">UTM フィールドの操作</a></li>
-                  
-                
+                    
+                    <li><a href="/general/working-utm-fields-audience-module.html">UTMフィールドの操作</a></li>
+                   
               </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/integrations/index.html">統合<strong> + </strong></a></h5>
+              
+              <h5 class="submenu-header"><a href="/integrations/index.html">統合<strong>+</strong></a></h5>
               <ul class="sidenav-submenu" style="display:none;">
-                
-                  
+                 
                     <li class="submenu-header">
-                      <a href="/integrations/eloqua/index.html">Eloqua <strong> + </strong></a>
+                      <a href="/integrations/eloqua/index.html">エロクア<strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                         <li><a href="/integrations/eloqua/creating-custom-lead-forms-oracle-eloqua.html">カスタムリードフォームの作成</a></li>
                         
                         <li><a href="/integrations/eloqua/eloqua-integration-testing-guide.html">Eloqua 統合テストガイド</a></li>
                         
-                        <li><a href="/integrations/eloqua/embedding-video-cloud-video-eloqua-landing-page.html">ランディングページへのビデオの埋め込み</a></li>
+                        <li><a href="/integrations/eloqua/embedding-video-cloud-video-eloqua-landing-page.html">ランディングページへの動画の埋め込み</a></li>
                         
-                        <li><a href="/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html">Oracle Eloquaとの統合</a></li>
+                        <li><a href="/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html">OracleEloquaとの統合</a></li>
                         
                       </ul>
                     </li>
-                  
-                
-                  
+                    
                     <li class="submenu-header">
-                      <a href="/integrations/hubspot/index.html">HubSpot <strong> + </strong></a>
+                      <a href="/integrations/hubspot/index.html">HubSpot<strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                         <li><a href="/integrations/hubspot/creating-custom-lead-forms-hubspot.html">カスタムリードフォームの作成</a></li>
                         
-                        <li><a href="/integrations/hubspot/hubspot-rest-api-integration-testing-guide.html">HubSpot REST API テストガイド</a></li>
+                        <li><a href="/integrations/hubspot/hubspot-rest-api-integration-testing-guide.html">HubSpot RESTAPIテストガイド</a></li>
                         
-                        <li><a href="/integrations/hubspot/integrating-video-cloud-hubspot-using-client-side-apis.html">HubSpot（クライアントサイド API）との統合</a></li>
+                        <li><a href="/integrations/hubspot/integrating-video-cloud-hubspot-using-client-side-apis.html">HubSpot（クライアント側API）との統合</a></li>
                         
-                        <li><a href="/integrations/hubspot/integrating-video-cloud-hubspot-using-rest-apis.html">ハブスポット (REST API) との統合</a></li>
+                        <li><a href="/integrations/hubspot/integrating-video-cloud-hubspot-using-rest-apis.html">HubSpot（REST API）との統合</a></li>
                         
                       </ul>
                     </li>
-                  
-                
-                  
+                    
                     <li class="submenu-header">
-                      <a href="/integrations/marketo/index.html">マルケト<strong> + </strong></a>
+                      <a href="/integrations/marketo/index.html">マルケト<strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                         <li><a href="/integrations/marketo/creating-custom-lead-forms-marketo.html">カスタムリードフォームの作成</a></li>
                         
-                        <li><a href="/integrations/marketo/integrating-video-cloud-marketo-using-munchkin.html">マルケトとの統合 (Munchkin) </a></li>
+                        <li><a href="/integrations/marketo/integrating-video-cloud-marketo-using-munchkin.html">Marketo（マンチキン）との統合</a></li>
                         
-                        <li><a href="/integrations/marketo/integrating-video-cloud-marketo-using-rest-apis.html">マルケトとの統合（REST API）</a></li>
+                        <li><a href="/integrations/marketo/integrating-video-cloud-marketo-using-rest-apis.html">Marketoとの統合（REST API）</a></li>
                         
                         <li><a href="/integrations/marketo/marketo-rest-integration-testing-guide.html">Marketto REST 統合テストガイド</a></li>
                         
                       </ul>
                     </li>
-                  
-                
-                  
+                    
                     <li class="submenu-header">
-                      <a href="/integrations/non-map/index.html">マップ以外<strong> + </strong></a>
+                      <a href="/integrations/non-map/index.html">非MAP<strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                         <li><a href="/integrations/non-map/creating-custom-integrations-audience-module.html">カスタム統合の作成</a></li>
                         
                         <li><a href="/integrations/non-map/integrating-audience-single-sign.html">シングルサインオンとの統合</a></li>
                         
-                        <li><a href="/integrations/non-map/using-audience-module-track-viewers.html">オーディエンスを使って視聴者を追跡する</a></li>
+                        <li><a href="/integrations/non-map/using-audience-module-track-viewers.html">視聴者を追跡するための視聴者の使用</a></li>
                         
                       </ul>
                     </li>
-                  
-                
-                  
+                    
                     <li class="submenu-header">
-                      <a href="/integrations/salesforce/index.html">Salesforce <strong> + </strong></a>
+                      <a href="/integrations/salesforce/index.html">セールスフォース<strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                         <li><a href="/integrations/salesforce/creating-custom-lead-forms-salesforce.html">カスタムリードフォームの作成</a></li>
                         
-                        <li><a href="/integrations/salesforce/creating-custom-lead-forms-salesforce.html">Pardot の Salesforce オブジェクトの作成</a></li>
+                        <li><a href="/integrations/salesforce/creating-salesforce-object-pardot.html">PardotのSalesforceオブジェクトの作成</a></li>
                         
-                        <li><a href="/integrations/salesforce/integrating-video-cloud-salesforce.html">Salesforce との統合</a></li>
+                        <li><a href="/integrations/salesforce/integrating-video-cloud-salesforce.html">Salesforceとの統合</a></li>
                         
                       </ul>
                     </li>
-                  
-                
+                   
               </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/admin/index.html">オーディエンスの管理<strong> + </strong></a></h5>
+              
+              <h5 class="submenu-header"><a href="/admin/index.html">オーディエンスの管理<strong>+</strong></a></h5>
               <ul class="sidenav-submenu" style="display:none;">
-                
-                  
+                 
                     <li><a href="/admin/exporting-audience-data-audience-module.html">オーディエンスからのデータのエクスポート</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/exporting-gallery-lead-data.html">ギャラリーリードデータのエクスポート</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/managing-viewer-data.html">ビューアデータの管理</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/troubleshooting-audience-issues.html">オーディエンスの問題のトラブルシューティング</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/develop/index.html">開発者<strong> + </strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/develop/overview-audience-api.html">概要:オーディエンス API </a></li>
-                  
-                
-                  
-                    <li><a href="/develop/reference.html">オーディエンス API リファレンス</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/support/index.html"><strong>サポート+ </strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
                     
-                  
-                
-                  
-                    <li><a href="/support/viewing-brightcove-system-status-page.html">Brightcove のシステムステータスページの表示</a></li>
-                  
-                
-                  
-                    <li><a href="/support/contact-sales.html">営業へのお問い合わせ</a></li>
-                  
-                
-                  
-                    <li><a href="/support/opening-case-with-brightcove-support.html">サポートケースを開く</a></li>
-                  
-                
+                    <li><a href="/admin/exporting-gallery-lead-data.html">ギャラリーリードデータのエクスポート</a></li>
+                    
+                    <li><a href="/admin/managing-viewer-data.html">ビューアデータの管理</a></li>
+                    
+                    <li><a href="/admin/troubleshooting-audience-issues.html">オーディエンスの問題のトラブルシューティング</a></li>
+                   
               </ul>
-            
-          
+              
+              <h5 class="submenu-header"><a href="/develop/index.html">開発者<strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                 
+                    <li><a href="/develop/overview-audience-api.html">概要:オーディエンス API </a></li>
+                    
+                    <li><a href="/develop/reference.html">オーディエンス API リファレンス</a></li>
+                   
+              </ul>
+              
+              <h5 class="submenu-header"><a href="/support/index.html">サポート<strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                 
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">Brightcoveのシステムステータスページの表示</a></li>
+                    
+                    <li><a href="/support/contact-sales.html">営業へのお問い合わせ</a></li>
+                    
+                    <li><a href="/support/opening-case-with-brightcove-support.html">サポートケースを開く</a></li>
+                    
+                    <li><a href="/support/reset-support-portal-password.html">サポートポータルのパスワードをリセットする</a></li>
+                   
+              </ul>
+             
       </nav>
     </div>
     <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
   <!-- bootstrap layout -->
-
-<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="ナビゲーションメニュー"/></p>
+ <p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="Navigation Menu"></p>
 
 <!-- search bar -->
 <div id="nav-search-box" style="margin-top: 1rem;"></div>
@@ -366,167 +278,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <ul id="centered_in_page_toc" class="list-none"></ul>
 </details>
 <!-- open in new tab/window -->
-<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="新しいタブで開く" style="margin-top:4em;width: 1.5em;"/></a>
+<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="open in new tab" style="margin-top:4em;width: 1.5em;"></a>   <h1>このページは移動しました-に移動します<a href="https://studio.support.brightcove.com/campaign/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html">https://studio.support.brightcove.com/campaign/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html</a> 1秒で。ブックマークを更新してください！</h1>
+<script type="text/javascript">
+var t = setTimeout(function (){ window.location.href = 'https://ja.studio.support.brightcove.com/campaign/integrations/eloqua/integrating-video-cloud-oracle-eloqua.html'; }, 300);
+</script>
 
-
-
-  
-    
-
-
-<article class="bcls-article">
-  <h1>Video CloudをOracle Eloquaと統合する</h1>
-  <summary>このトピックでは、Oracle Eloquaで使用するためにオーディエンス・モジュールを構成する方法について説明します。</summary>
-  <section class="bcls-section">
-    <div class="training-video-player-ipx" data-experience="5a73630f7afd7a00101bc1b5" data-video-ids="4594572802001">&nbsp;</div>
-    <script src="https://players.brightcove.net/20318290001/experience_5a73630f7afd7a00101bc1b5/live.js"></script>
-    <p>オーディエンスモジュールを使用すると、Video Cloud はBrightcove プレーヤーから Oracle Eloqua に視聴データを同期できます。Oracle Eloquaでは、このデータは、セグメンテーション、キャンペーンロジック、レポート、リードスコアリング、およびコミュニケーションのパーソナライズに使用できます。AudienceモジュールとOracle Eloquaとの統合は、次の2つの主要コンポーネントから構成されます。</p>
-    <ul>
-      <li>動画視聴回数データのトラッキングを可能にするBrightcoveプレーヤープラグイン</li>
-      <li>ビデオ・クラウドからOracle Eloquaにトラッキング・データを送信する同期プロセス</li>
-    </ul>
-  </section>
-  <section class="bcls-section">
-    <h2 id="requirements">要件</h2>
-    <p>AudienceモジュールをOracle Eloquaと使用するには、以下が必要です。</p>
-    <ul>
-      <li>ProfessionalまたはEnterprise Video Cloudアカウントを保有している</li>
-      <li>Audienceモジュールを開いたときに表示される最初のスプラッシュスクリーンで必要な情報を提出して、お客様のアカウントでAudienceモジュールが有効になっている</li>
-      <li>はじめてモジュールを使用するときにサービス利用契約に同意している</li>
-      <li>プレーヤーを公開するときは、高度な埋め込み (ページ内) 公開コードを使用してください。標準埋め込み (iframe) 公開コードはプラグインが iframe 内で実行されるため、機能しません。したがって、親ページの URL パラメータにアクセスできず、正しい Cookie を取得できない可能性があります</li>
-      <li>Oracle Eloqua 10 と認証情報を入手して、次のサイトにログインしてください: <a href="https://login.eloqua.com/"> https://login.eloqua.com </a>
-        <aside class="bcls-aside bcls-aside--information">注：これらの認証情報は Oracle Eloqua ログインページに入力され、Brightcove に直接提供されません。</aside>
-      </li>
-      <li>Oracle Eloquaへのログインに使用する資格情報は、<strong>アドバンスト・ユーザー-マーケティング・グループに追加され</strong>、次の権限を持っている必要があります。
-        <ul>
-          <li>APIを消費</li>
-          <li>クラウドアプリケーションのインストール</li>
-          <li>マーケティングキャンペーンの設定</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
-  <section class="bcls-section">
-    <h2 id="features">機能</h2>
-    <p>Video Cloud - Oracle Eloqua統合の主な機能には、以下があります。</p>
-    <ul>
-      <li><strong>リードフォーム</strong> -視聴者が動画を視聴したときに自動的に表示される Eloqua フォームを作成します。詳細は、<a href="/integrations/eloqua/creating-custom-lead-forms-oracle-eloqua.html"> Oracle Eloqua用のカスタム・リード・フォームの作成を参照してください</a>。</li>
-      <li><strong>データ・フォーマット</strong> -ビデオ・クラウド表示データは、Oracle Eloqua内のカスタム・データ・オブジェクト（CDO）に配信されます。Oracle Eloquaにレプリケートされるデータは次のとおりです。
-        <ul>
-          <li>動画タイトル</li>
-          <li>動画ID</li>
-          <li>アカウント ID (ビデオクラウド)</li>
-          <li>ページ URL（参照先のページの URL）</li>
-          <li>プレーヤー ID (ビデオクラウドプレーヤー)</li>
-          <li>% Watched</li>
-        </ul>
-      </li>
-      <li><strong>データ転送</strong> -データの表示は時間ごとに同期され、Oracle Eloquaに表示されるまでに2～4時間かかることがあります。</li>
-      <li><strong>データ保持</strong> -収集されたデータは、オプションで Video Cloud に最大 1 か月間保持できます。</li>
-    </ul>
-  </section>
-  <section class="bcls-section">
-    <h2 id="setupConnection">接続を設定する</h2>
-    <p>Eloqua との統合を設定する前に、新しいブラウザウィンドウを開き、Eloqua アカウントから手動でログアウトすることをお勧めします。これにより、インテグレーションの設定時に Eloqua アカウントにログインするように促され、正しいアカウントを使用していることを確認できます。</p>
-    <p>Video CloudとOracle Eloquaとの間の接続を設定するには、次の手順を行います。</p>
-    <ol class="bcls-tasklist-restart">
-      <li>Audience モジュールを開き、左側のナビゲーションで [ <strong>データ接続</strong> ] をクリックします。</li>
-      <li>[<strong>新規コレクションの追加</strong>]をクリックします。</li>
-      <li>統合として<strong> Eloqua </strong>を選択します。
-        <aside class="bcls-aside bcls-aside--information">注：利用可能なデータ接続は、Video Cloud サブスクリプションに基づいています。</aside>
-      </li>
-      <li>（オプション）<strong>接続名を入力します</strong>。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="エログアを選択" src="/assets/images/integrations/eloqua/node15635-select-eloqua.png"/></figure>
-      </li>
-      <li>[<strong>接続</strong>]をクリックします。</li>
-      <li>「<strong> Eloqua に接続</strong>」をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="エロクアに接続する" src="/assets/images/integrations/eloqua/node15635-connect-to-eloqua.png"/></figure>
-      </li>
-      <li>Eloqua にサインインするように求められます。Eloqua <strong>の会社名</strong>、<strong>ユーザー名</strong>、<strong>パスワードを入力します</strong>。[ <strong>サインイン</strong> ] をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Eloqua ログイン" src="/assets/images/integrations/eloqua/node15635-eloqua-login.png"/></figure>
-      </li>
-      <li>ログインに成功すると、<strong> Eloqua 用 Brightcove 動画コネクトをインストールするよう求められます</strong>。[ <strong>同意してインストール</strong> ] をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="アプリをインストールする" src="/assets/images/integrations/eloqua/node15635-eloqua-install-app.png"/></figure>
-      </li>
-      <li>アカウントの Eloqua を有効にするよう求められます。[ <strong>有効</strong> ] をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="アカウントの確認" src="/assets/images/integrations/eloqua/node15635-confirm-enable-eloqua.png"/></figure>
-      </li>
-      <li>Eloqua の<strong> Brightcove ビデオコネクトが Eloqua </strong>アカウントにアクセスすることを許可するように求められます。[ <strong>サインイン</strong> ] をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="エロクアへのアクセスを許可する" src="/assets/images/integrations/eloqua/node15635-allow-access-eloqua.png"/></figure>
-      </li>
-      <li>会社名とユーザー名を確認し、[ <strong> Accept </strong> ] をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="エロクアへのアクセスを許可する" src="/assets/images/integrations/eloqua/node15635-confirm-account.png"/></figure>
-      </li>
-      <li>Eloqua のセットアップを促すメッセージが表示されます。<strong>設定 Eloqua </strong>をクリックします。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="セットアップエロクア" src="/assets/images/integrations/eloqua/node15635-setup-eloqua.png"/></figure>
-      </li>
-    </ol>
-  </section>
-  <section class="bcls-section">
-    <h2 id="configure">統合を設定する</h2>
-    <p>Video CloudからOracle Eloquaへの接続を完了した後、統合を設定できます。</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="接続オプション" src="/assets/images/integrations/eloqua/node15635-connected-options.png"/></figure>
-    <ol class="bcls-tasklist-restart">
-      <li>視聴を外部アクティビティとして同期するには、[<strong>外部アクティビティとして動画視聴をEloquaに同期させる</strong>]を選択します。外部活動は、Eloquaに情報を入れる別の場所です。パブリッシャーは、外部アクティビティを使用して Eloqua で報告またはトリガーを行うことを選択できます。詳細については、Eloqua <a href="https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAA/Help/ExternalAssets/ExternalAssets.htm">のドキュメントを参照してください</a>。</li>
-      <li>デフォルトでは、<strong>接続ステータス</strong>は<strong>有効</strong>になります。<strong>接続ステータスは</strong>、Video Cloudビデオ・エンゲージメント・データがOracle Eloquaに送信されるかどうかを決定します。
-        <ul>
-          <li><strong>有効</strong> -データが収集され、Eloquaに送信されます</li>
-          <li><strong>無効</strong> -データは収集されません（統合は無効です）</li>
-        </ul>
-      </li>
-      <li>デフォルトでは、<strong>「不明な閲覧者の追跡データ」</strong>は<strong>「無効」</strong>になります。この設定では、視聴者が不明な場合に、動画エンゲージメントデータを Video Cloud に保存するかどうかを指定します。既知の視聴者のデータのみがEloquaに送信されます。
-        <ul>
-          <li><strong>有効</strong> -すべての視聴者のデータが収集され、Video Cloud に保存されます</li>
-          <li><strong>無効</strong> -不明な視聴者のデータは Video Cloud に保存されません</li>
-        </ul>
-      </li>
-      <li>データ保持ポリシーを選択します。データ保持ポリシーによって、視聴データおよび（Audienceリードフォームを使用している場合）リードフォームデータがご自身のVideo Cloudアカウントに保持される期間が決まります。Video Cloudでデータを保持していると、同期の中断から回復できます。また、（通常は、動画の視聴時点で視聴者が既知の連絡先ではないので）同期に失敗したイベントの再試行をAudienceは継続します。イベントがデータ保持期間を過ぎるまで、継続します。<strong>保持設定は、プライバシーポリシーに従って調整する必要があります</strong>。Video Cloud にユーザーデータを保持する必要はありません。データは、データ保持期間が過ぎると削除されます。
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="データ保持オプション" src="/assets/images/integrations/eloqua/node15635-data-retention-options.png"/></figure>
-      </li>
-    </ol>
-    <p>Oracle Eloquaとの統合を削除するには、「<strong>切断</strong>」をクリックします。ページの下部に、Audience対応プレーヤーおよび関連するリードフォームがすべて表示されます。</p>
-    <p>Audienceモジュールは、マーケティングプラットフォームへの複数の接続をサポートしています。追加の統合を設定するには、[<strong>新規接続の追加</strong>]をクリックします。</p>
-  </section>
-  <section class="bcls-section">
-    <h2 id="verify">統合の確認</h2>
-    <p>統合を設定したら、統合をテストして、ビデオビューデータがEloquaに送信されていることを確認します。統合の検証については、<a href="/integrations/eloqua/eloqua-integration-testing-guide.html"> Eloqua 統合テストガイドを参照してください</a>。</p>
-  </section>
-  <section class="bcls-section">
-    <h2 id="player">Audience対応プレーヤーを作成する</h2>
-    <p>動画エンゲージメントデータは、Audience対応の動画プレーヤーを使用している場合にのみEloquaに送信されます。Audience対応Brightcove Playerの作成については、<a href="/general/creating-audience-enabled-player.html">「Audience対応プレーヤーを作成する」</a>を参照してください。</p>
-  </section>
-  <section class="bcls-section">
-    <h2 id="trackingid">トラッキングIDを渡す</h2>
-    <p>オーディエンスモジュールは、Eloqua にトラッキング ID 値を渡す機能をサポートしています。トラッキング ID は、たとえば、キャンペーン ID の追跡に使用されます。トラッキング ID は、オーディエンス対応プレーヤーを表示する URL に追加するか、プレーヤーの埋め込みコードに追加することができます。</p>
-    <ul>
-      <li>例:URLに追加</li>
-    </ul>
-    <pre>
-  http://www.myurl.com/video.html？<strong> bctrackingid=12345 </strong></pre>
-    <ul>
-      <li>例:プレーヤーの埋め込みコードに追加しました</li>
-    </ul>
-    <pre>
-  &lt;video data-video-id= "6033402539001" 
-         data-account= "1486906377" 
-         データプレーヤー=「デフォルト」 
-         データ埋め込み=「デフォルト」 
-         data-application-id 
-         class= "video-js」
-         <strong>data-bc-trackingid= "12345" </strong> 
-         &gt; &lt;コントロール/ビデオ &gt;
-  &lt;スクリプト src=」//players.brightcove.net/1486906377/default_default/index.min.js」&gt; &lt; /script &gt;</pre>
-    <p>その後、オーディエンスは同期される別のフィールドとして Eloqua に値を渡します。</p>
-  </section>
-  <section class="bcls-section">
-    <h2 id="identify">視聴者を識別する</h2>
-    <p>Eloqua インテグレーションを持つオーディエンス対応プレイヤーは、Eloqua の API を呼び出して訪問者 ID を取得します。これは多くの場合 Eloqua GUID と呼ばれます。この ID は、Audience モジュールの表示データに取り込まれ、表示データを Eloqua と同期するために使用されます。</p>
-    <p>Eloqua は独自のクッキーセットを使用し、Brightcove プレーヤーが Eloqua インテグレーションで設定されている場合、オーディエンスは Eloqua クッキー内の GUID をキャプチャし、Eloqua サーバー側と通信し、ユーザーが誰なのかを調べます。</p>
-    <p>ユーザーの電子メールアドレスも渡され、閲覧者の識別に使用できます。詳細と例については、「<a href="/general/how-audience-module-identifies-viewers.html#email">オーディエンスモジュールによる閲覧者の識別方法</a>」を参照してください。</p>
-  </section>
-</article>
-
-<!-- complete bootstrap layout -->
+ <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
       
@@ -540,35 +297,41 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <hr>
-<footer class="bcls-footer" role="contentinfo">  <div class="row">
+<div class="last-updated">
+  ページの最終更新日21 May 2021
+</div>
+
+ <footer class="bcls-footer" role="contentinfo">
+  <div class="row">
     <div class="region region-footer-top-center col-md-12">
       <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+        <img src="https://support.brightcove.com/site-assets/images/site/SVG/COVE004_Brightcove_Logo_093020_RGB_KO.svg" class="bc-footer-logo" alt="Brightcove">
 
-        <h2>Brightcove サポート</h2>
+        <h2>Brightcove Support</h2>
 
         <ul class="menu">
           <li>
-            <a href="https://status.brightcove.com">システムステータス</a>
+            <a href="https://status.brightcove.com">System Status</a>
           </li>
           <li>
-            <a href="https://supportportal.brightcove.com/s/login/?">サポートへのお問い合わせ</a>
+            <a href="https://supportportal.brightcove.com">Contact Support</a>
           </li>
           <li>
-            <a href="https://support.brightcove.com/">ドキュメンテーション</a>
+            <a href="https://support.brightcove.com/">Documentation</a>
           </li>
         </ul>
 
       </nav>
       <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
 
-        <h2>トレーニング</h2>
+        <h2>Training</h2>
 
         <ul class="menu">
           <li>
-            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">オンラインコース</a>
+            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">Online Courses</a>
           </li>
           <li>
-            <a href="https://studio.support.brightcove.com/training/register-training.html">コースに登録する</a>
+            <a href="https://studio.support.brightcove.com/training/register-training.html">Register for a course</a>
           </li>
           <li>
             <a href="https://university.brightcove.com/">Brightcove University</a>
@@ -585,7 +348,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
             <a href="https://www.brightcove.com">Brightcove.com</a>
           </li>
           <li>
-            <a href="https://supportportal.brightcove.com/s/login/?">お問合せ</a>
+            <a href="https://supportportal.brightcove.com">Contact Us</a>
           </li>
         </ul>
       </nav>
@@ -599,10 +362,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
             <td>
               <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> Brightcove Inc. All rights reserved.</div>
             </td>
-            <td><a href="https://www.brightcove.com/en/legal/privacy">プライバシー</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">利用規約</a></td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">Privacy</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">Terms &amp; Conditions</a></td>
             <td>
               <div class="gf-links-cols footer-menu">
-                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin" style="margin-right: 1rem;"><i data-feather="linkedin" style="color:#8E9093;height: 1.25rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter" style="margin-right: 1rem;"><i data-feather="twitter" style="color:#8E9093;height: 1.25rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i data-feather="facebook" style="color:#8E9093;height: 1.25rem;"></i></a>
                 </div>
               </div>
             </td>
@@ -613,7 +376,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </div>
 </footer>
 
-<script>
+<script translate="no">
       
   var searchBox = sajari.init({
     mode: "search-box",
@@ -630,8 +393,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     });
   
 
-</script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+</script>   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
@@ -640,17 +402,22 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
   
   <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/learning-paths/learning-paths.js"></script>
   <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
   <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
   <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/sajari-reindex.js"></script>
   <script src="/assets/js/feedback.js"></script>
   
   <script src="/assets/js/sajari-search-foot.js"></script>
   
+	<script translate="no">
+		feather.replace()
+	</script>
   <!-- <script src="/assets/js/sajari-index.js"></script> -->
-  <style>
+  <style translate="no">
     a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
       background-color: lightblue;
     }
@@ -679,4 +446,4 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 </body>
 
-</html>
+</html> 
